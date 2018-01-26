@@ -3,9 +3,18 @@ var express = require("express");
 var mongojs = require("mongojs");
 var cheerio = require("cheerio");
 var request = require("request");
+var logger = require("morgan");
+var bodyParser = require("body-parser");
 
 // initialize express
 var app = express();
+
+// Set the app up with morgan, body-parser, and a static folder
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(express.static("public"));
 
 // database configurations
 var databaseUrl = "hw_scraper"
@@ -19,7 +28,7 @@ db.on("error", function(error) {
 
 // Main route (simple Hello World Message)
 app.get("/", function(req, res) {
-    res.send("Hello world");
+    res.send(index.html);
 });
 
 // get all the data from the database 
