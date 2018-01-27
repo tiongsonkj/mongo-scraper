@@ -20,11 +20,13 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // database configurations
-var databaseUrl = "mongodb://heroku_z8nj720t:ohn83kq37mdtc1qe1vt2lca3n4@ds117148.mlab.com:17148/heroku_z8nj720t";
+// var databaseUrl = "mongodb://heroku_z8nj720t:ohn83kq37mdtc1qe1vt2lca3n4@ds117148.mlab.com:17148/heroku_z8nj720t";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var port = process.env.PORT || 3030;
 var collections = ["nba_hw"];
 
 // hook mongo js configuration to the db variable
-var db = mongojs(databaseUrl, collections);
+var db = mongojs(MONGODB_URI, collections);
 db.on("error", function(error) {
     console.log("Database Error: ", error);
 });
@@ -95,7 +97,7 @@ app.get("/scrape", function(req, res) {
 });
 
 // Listen on port 3030
-app.listen(3030, function() {
+app.listen(port, function() {
     console.log("App running on port 3030!");
   });
 
