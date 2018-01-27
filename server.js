@@ -5,6 +5,9 @@ var cheerio = require("cheerio");
 var request = require("request");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+// set mongoose to leverage built in JS ES6 Promises
+mongoose.Promise = Promise;
 
 // initialize express
 var app = express();
@@ -26,7 +29,7 @@ db.on("error", function(error) {
     console.log("Database Error: ", error);
 });
 
-// Main route (simple Hello World Message)
+// Main route (goes to index page)
 app.get("/", function(req, res) {
     res.send(index.html);
 });
