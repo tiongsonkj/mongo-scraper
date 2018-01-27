@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 // database configurations
-var databaseUrl = "hw_scraper"
+var databaseUrl = "mongodb://heroku_z8nj720t:ohn83kq37mdtc1qe1vt2lca3n4@ds117148.mlab.com:17148/heroku_z8nj720t";
 var collections = ["nba_hw"];
 
 // hook mongo js configuration to the db variable
