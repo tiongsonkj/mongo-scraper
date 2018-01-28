@@ -11,3 +11,8 @@
 .jumbotron {
     margin-top: 30px;
 }
+
+/* card */
+.card-header {
+    background-color: rgb(255, 178, 85);
+}

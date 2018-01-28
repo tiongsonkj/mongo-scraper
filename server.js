@@ -23,6 +23,7 @@ app.use(express.static("public"));
 var databaseUrl = "mongodb://heroku_z8nj720t:ohn83kq37mdtc1qe1vt2lca3n4@ds117148.mlab.com:17148/heroku_z8nj720t";
 // var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 var port = process.env.PORT || 3030;
+// var databaseUrl = "hw_scraper";
 var collections = ["nba_hw"];
 
 // hook mongo js configuration to the db variable
