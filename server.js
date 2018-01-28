@@ -33,7 +33,18 @@ db.on("error", function(error) {
 
 // Main route (goes to index page)
 app.get("/", function(req, res) {
-    res.send(index.html);
+    db.nba_hw.find({}, function(error, found) {
+        // Log any errors if the server encounters one
+        if (error) {
+            console.log(error);
+        }
+        // Otherwise, send the result of this query to the browser
+        else {
+            var hbsObject = { nbaNews: found };
+            console.log(hbsObject);
+            return res.render("index", hbsObject);
+        }
+    });
 });
 
 // get all the data from the database 
@@ -64,7 +75,7 @@ app.get("/scrape", function(req, res) {
         $("a.content_list--item").each(function(i, element) {
 
             var link = $(element).attr("href");
-            var title = $(element).children().text();
+            var title = $(element).find("h5").text();
 
             results.push({
                 title: title,
@@ -112,7 +123,7 @@ request("http://www.nba.com", function(error, response, html) {
     $("a.content_list--item").each(function(i, element) {
 
         var link = $(element).attr("href");
-        var title = $(element).children().text();
+        var title = $(element).find("h5").text();
 
         results.push({
             title: title,
